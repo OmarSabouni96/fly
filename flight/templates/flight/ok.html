@@ -1,0 +1,17 @@
+
+
+{% extends 'flight/base.html' %}
+{% load static %}
+
+{% block head %}
+<title>Payment | Flight</title>
+{% endblock %}
+
+{% block parentBody %}
+
+
+{% csrf_token %}
+
+{{ success }}
+
+{% endblock%}

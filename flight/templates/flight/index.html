@@ -1,0 +1,298 @@
+{% extends 'flight/base.html' %}
+
+{% load static %}
+
+{% block head %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
+
+<title>Home | Flight</title>
+
+<link rel="stylesheet" href="{% static 'css/index_style.css' %}">
+
+
+{% endblock head %}
+
+
+{% block parentBody %}
+
+<div class="background">
+  <div class="container">
+  </div>
+</div>
+
+  <div class="booking-box">
+    <div class="container">
+  
+      <form class="search-flight-form" action="{% url 'flight' %}" onsubmit="return flight_search()">
+  
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="wrapper">
+              <div class="toggle_radio">
+                <input type="radio" checked class="toggle_option trip-type" id="first_toggle" name="TripType" value="1">
+                <input type="radio" class="toggle_option trip-type" id="second_toggle" name="TripType" value="2" {% if trip_type == '2' %}checked{% endif %}>
+                <label for="first_toggle">
+                  <p>One-Way</p>
+                </label>
+                <label for="second_toggle">
+                  <p>Round-Trip</p>
+                </label>
+                <div class="toggle_option_slider">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row justify-content-center row-cols-md-4 row2">
+          <div class="col-12">
+            <div class="input-group">
+              <input type="text" name="Origin" placeholder="From" id="flight-from" class="form-control mr-sm-3"
+                onblur="hideplaces(this)" data-value="{{origin | lower}}" data-list="places_from" autocomplete="off"
+                value="{{origin | upper}}" required>
+  
+              <div id="places_from" class="places_box ">
+                <div class="each_places_from_list places__list" data-value="KRT" onclick="selectplace(this)">Khartoum
+                  (KRT)</div>
+                <div class="each_places_from_list places__list" data-value="DOH" onclick="selectplace(this)">Doha
+                  (DOH)</div>
+                <div class="each_places_from_list places__list" data-value="DXB" onclick="selectplace(this)">Dubai
+                  (DXB)</div>
+                <div class="each_places_from_list places__list" data-value="AUH" onclick="selectplace(this)">Abu Dhabi
+                  (AUH)</div>
+                <div class="each_places_from_list places__list" data-value="JED" onclick="selectplace(this)">Jeddah
+                  (JED)</div>
+                <div class="each_places_from_list places__list" data-value="RUH" onclick="selectplace(this)">Riyadh
+                  (RUH)</div>
+                <div class="each_places_from_list places__list" data-value="CAI" onclick="selectplace(this)">Cairo
+                  (CAI)</div>
+              </div>
+  
+              <span class="input-group-text" id="icon_flight"><i class="fa-solid fa-plane-departure"></i></span>
+            </div>
+  
+  
+          </div>
+          <div class="col-12">
+            <div class="input-group">
+              <input type="text" name="Destination" placeholder="To" id="flight-to" class="form-control mr-sm-3"
+                onblur="hideplaces(this)" data-value="{{origin | lower}}" data-list="places_to" autocomplete="off"
+                value="{{origin | upper}}" required>
+  
+              <!-- <div class="label" id="from"></div> -->
+              <div id="places_to" class="places_box">
+                <div class="each_places_to_list places__list" data-value="KRT" onclick="selectplace(this)">Khartoum (KRT)
+                </div>
+                <div class="each_places_to_list places__list" data-value="DOH" onclick="selectplace(this)">Doha (DOH)
+                </div>
+                <div class="each_places_to_list places__list" data-value="DXB" onclick="selectplace(this)">Dubai (DXB)
+                </div>
+                <div class="each_places_to_list places__list" data-value="AUH" onclick="selectplace(this)">Abu Dhabi (AUH)
+                </div>
+                <div class="each_places_to_list places__list" data-value="JED" onclick="selectplace(this)">Jeddah (JED)
+                </div>
+                <div class="each_places_to_list places__list" data-value="RUH" onclick="selectplace(this)">Riyadh (RUH)
+                </div>
+                <div class="each_places_to_list places__list" data-value="CAI" onclick="selectplace(this)">Cairo (CAI)
+                </div>
+              </div>
+  
+              <span class="input-group-text" id="icon_flight"><i class="fa-solid fa-plane-arrival"></i></span>
+            </div>
+          </div>
+  
+              <div class="col-12 input-daterange">
+                <!-- <input type="text"class="form-control hi" placeholder="Departure"
+                                      onfocus="(this.type='date')" id="wow" onblur="(this.type='text')"> -->
+                <!-- <input type="date" name="DepartDate" min="{{min_date}}" id="input_date" onchange="handler(event);"
+                  placeholder="Date" class="form-control mr-sm-2" value="{{depart_date}}" required> -->
+
+                  <div class="input-group">
+                    
+                    <input  type="text" class="form-control" name="DepartDate" id="input_date" onchange="handler(event);" value="" placeholder="Departure Date" readonly>
+                    <!-- <input type="text" class="form-control" placeholder="Leaving Date" disabled > -->
+                    <span class="input-group-text" id="icon_flight"><i class="bi bi-calendar-week"></i></span>
+                  </div> 
+                  
+
+              </div>
+    
+              <div class="col-12 input-daterange">
+                <!-- <input type="date" name="ReturnDate" min="{{min_date}}" id="return_date" placeholder="Date"
+                  class="form-control mr-sm-2" value="{{return_date}}" {% if trip_type != '2' %} disabled {% endif %} required> -->
+                
+                  <div class="input-group">
+                    
+                    <!-- <input type="text" class="form-control" name="DepartDate" id="input_date"  placeholder="Departure Date" required readonly> -->
+                    <input type="text" class="form-control" name="ReturnDate" placeholder="Arriving Date" id="return_date" value="" readonly {% if trip_type != '2' %} disabled {% endif %} readonly>
+                    <span class="input-group-text" id="icon_flight" ><i class="bi bi-calendar-week" disabled></i></span>
+                  </div>
+
+              </div>
+        </div>
+  
+        <div class="row justify-content-center row-cols-md-4 row3">
+          
+          
+
+          <div class="col-12">
+
+            <select class="form-select" aria-label="Default select example" id="Adult_id" name="Adult" >
+              <option hidden value="1">Adult <span>(12+)</span></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <div class="outer">
+  
+              <select class="form-select" aria-label="Default select example" id="Child_id" name="Child">
+                <option hidden value="0">Child <span>(2-11)</span></option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-12">
+  
+            <select class="form-select" aria-label="Default select example" id="Infant_id" name="Infant">
+              <option hidden value="0">Infant <span>(Under 2 years old)</span> </option>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+            </select>
+          </div>
+  
+  
+          <div class="col-12">
+            <!-- <button type="button" class="btn btn-primary"  id="search">Search</button> -->
+            <button type="submit" class="btn btn-primary form-control search_btn ">Search
+              Flight</button>
+  
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <section class="section second-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="section_title text-center mb_70">
+            <h2>Our Destinations</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row popular_destinations">
+        <div class="col-lg-4 col-md-6">
+          <div class="single_destination"
+            onclick="window.location.href = 'https://en.wikipedia.org/wiki/Tourism_in_Italy'">
+            <div class="thumb">
+              <img src="{% static 'css/img/destination/1.jpeg' %}" alt="">
+            </div>
+            <div class="content">
+              <a href="#">Turkey</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="single_destination"
+            onclick="window.location.href = 'https://en.wikipedia.org/wiki/Tourism_in_Brazil'">
+            <div class="thumb">
+              <img src="{% static 'css/img/destination/2.jpeg' %}" alt="">
+            </div>
+            <div class="content">
+              <a href="#">Sudan</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="single_destination"
+            onclick="window.location.href = 'https://en.wikipedia.org/wiki/Tourism_in_the_United_States'">
+            <div class="thumb">
+              <img src="{% static 'css/img/destination/3.jpeg' %}" alt="">
+            </div>
+            <div class="content">
+              <a href="#">Cairo</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="single_destination"
+            onclick="window.location.href = 'https://en.wikipedia.org/wiki/Tourism_in_Nepal'">
+            <div class="thumb">
+              <img src="{% static 'css/img/destination/4.jpeg' %}" alt="">
+            </div>
+            <div class="content">
+              <a href="#">Dubai</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="single_destination"
+            onclick="window.location.href = 'https://en.wikipedia.org/wiki/Tourism_in_the_Maldives'">
+            <div class="thumb">
+              <img src="{% static 'css/img/destination/5.jpeg' %}" alt="">
+            </div>
+            <div class="content">
+              <a href="#">Saudi Arabia</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="single_destination"
+            onclick="window.location.href = 'https://en.wikipedia.org/wiki/Tourism_in_Indonesia'">
+            <div class="thumb">
+              <img src="{% static 'css/img/destination/6.jpeg' %}" alt="">
+            </div>
+            <div class="content">
+              <a href="#">Qatar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+
+  {% endblock%}
+
+  

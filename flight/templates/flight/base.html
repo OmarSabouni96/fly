@@ -1,0 +1,166 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script src="https://kit.fontawesome.com/12ed229b37.js" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+      
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+
+    <meta charset="utf-8">
+    {% block head %}
+    {% endblock %}
+
+  </head>
+  <body>
+
+
+<!-- Nav start -->
+
+<div class="container main-nav">
+
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+      <a class="navbar-brand" href="#">
+        <!-- <img src="flight-icon.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top d"> -->
+        <span>Fly With Us</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'index' %}"><span>Home</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#"><span>about</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#"><span>contact</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#"><span>Log in</span></a>
+          </li>
+
+
+      </div>
+    </div>
+  </nav>
+
+</div>
+
+<!-- Nav End -->
+
+
+
+<section class="step-wizard">
+    <ul class="step-wizard-list" style="display: flex;">
+      <li class="step-wizard-item ">
+        <span class="progress-count">1</span>
+        <span class="progress-label">Flight Search</span>
+      </li>
+  
+      <li class="step-wizard-item ">
+        <span class="progress-count"><i class="bi bi-airplane-fill"></i></span>
+        <span class="progress-label">Result</span>
+      </li>
+      <li class="step-wizard-item">
+        <span class="progress-count"><i class="bi bi-person-fill"></i></span>
+        <span class="progress-label">Passenger</span>
+      </li>
+      <li class="step-wizard-item">
+        <span class="progress-count">4</span>
+        <span class="progress-label">Payment</span>
+      </li>
+  
+    </ul>
+  </section>
+
+  
+{% block parentBody %}
+
+
+
+{% endblock %}
+
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="footer-col">
+        <h4>company</h4>
+        <ul>
+          <li><a href="#">about us</a></li>
+          <li><a href="#">our services</a></li>
+          <li><a href="#">privacy policy</a></li>
+          <li><a href="#">affiliate program</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>get help</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">shipping</a></li>
+          <li><a href="#">returns</a></li>
+          <li><a href="#">order status</a></li>
+          <li><a href="#">payment options</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>online shop</h4>
+        <ul>
+          <li><a href="#">watch</a></li>
+          <li><a href="#">bag</a></li>
+          <li><a href="#">shoes</a></li>
+          <li><a href="#">dress</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>follow us</h4>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+
+
+    <!-- Need to have JQuery and Javascript for DropDown Actions to work -->
+    <!-- Latest compiled and minified JavaScript -->
+
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> -->
+
+
+
+
+    <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+
+  </body>
+</html>

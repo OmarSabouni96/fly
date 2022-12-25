@@ -1,0 +1,591 @@
+
+body {
+  background-color: #F9F9F8;
+  width: 100%;
+}
+
+
+.section1{
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.upper_banner{
+    margin-top: 10px;
+    /* min-height: 11vh; */
+    
+    /* background: linear-gradient(to right, #7474bf 0%, #348ac7 100%); */
+    background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
+
+    display: flex;
+    border-radius: 10px;
+}
+
+.white{
+    color: white;
+    font-size: small;
+}
+
+
+.small-label{
+    font-size: .7em;
+    color: rgb(240, 240, 240);
+}
+
+
+.upper_banner > .container{
+    display: flex;
+    height: 70px;
+    /* margin-top: 30px; */
+    margin-bottom: auto;
+    border-radius: 8px;
+    justify-content: space-between;
+}
+.upper_banner > .container > div{
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+}
+
+.banner_trip_places > div{
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    margin: auto;
+  }
+
+.banner_trip_time > div{
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+}
+
+
+
+
+
+
+
+
+/* - - - - - -- - - - - - - - - - - -- - - - -  */
+
+
+.external_box {
+  display: block;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  border-radius: 10px;
+  width: 60%;
+  margin: 15px auto;
+  padding: 15px 15px 15px 15px;
+  height: auto;
+  transition: 0.4s;
+
+}
+
+.flight_box {
+  display: inline-flex;
+  width: 100%;
+  margin-top: 10px;
+}
+
+
+
+.box_1, .box_2, .box_3{
+
+  display: inline-flex;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+  border-radius: 10px;
+  /* border-style: solid; */
+  /* border-color: #348ac7; */
+  height: 100px;
+  transition: height 0.2s ease-out;
+  flex-direction: column;
+}
+
+.box_1 {
+
+  width: 50%;
+}
+
+.box_2, .box_3 {
+
+  width: 24%;
+  margin-left: 10px;
+}
+
+
+.availability_flight_info {
+
+  display: inline-flex;
+  width: 100%;
+  height: 80%;
+  align-items: center;
+}
+
+
+.box_header {
+  display: inline-flex;
+  width: 100%;
+  height: 20%;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  background-image: linear-gradient(to bottom, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
+  /* background: #348AC7; */
+  font-size: 12px;
+  font-family: sans-serif;
+
+}
+
+.dep_time_box {
+
+  display: inline-flex;
+  width: 40%;
+  flex-direction: column;
+  padding-left: 30px;
+}
+
+.logo {
+  display: inline-flex;
+  width: 20%;
+  flex-direction: column;
+
+}
+
+.arrive_time_box{
+
+  display: inline-flex;
+  width: 40%;
+  flex-direction: column;
+  text-align: right;
+  padding-right: 30px;
+}
+
+#class_header {
+margin: auto;
+color: white;
+}
+
+#class_header_title {
+margin-left: 10px;
+color: white;
+}
+
+
+#dep_time {
+    font-size: 16px;
+    color: #232b38;
+    font-weight: 700;
+}
+
+#dep_code {
+  font-size: 14px;
+  color: #697886;
+  line-height: 1.2;
+
+}
+
+#dep_city {
+    font-size: 10px;
+    color: #697886;
+    line-height: 1.2;
+
+}
+#logo_median {
+  font-size: 16px;
+  text-align: center;
+}
+
+#company_airline {
+  text-align: center;
+}
+
+#flight_price {
+  text-align: center;
+  margin: auto;
+}
+
+
+
+.box_1_details, .box_2_details, .box_3_details {
+
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .2);
+  border-radius: 0px 8px 8px 8px;
+  width: 100%;
+  height: 0px;
+  overflow: hidden;
+  flex-direction: column;
+  /* background-image:url("https://www.pngitem.com/pimgs/m/174-1749208_world-map-png-simple-world-map-svg-transparent.png"); */
+  background-position: center;
+  transition: height 0.2s ease-in;
+}
+
+.box_2_details {
+  border-radius: 8px;
+}
+
+.box_3_details {
+  border-radius: 8px 0px 8px 8px;
+}
+
+.box_1:hover, .box_2:hover, .box_3:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, .7);
+}
+
+
+
+
+
+
+/* package-card -  - - - -- - - - - - */
+
+.price_box {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .2);
+  width: 230px;
+  height: 340px;
+
+  overflow: hidden;
+  margin: auto;
+  margin-top: 20px;
+  border-radius: 4px;
+
+}
+
+
+.pricingTable{
+    background: #fff;
+    padding-bottom: 20px;
+    overflow: hidden;
+}
+
+
+.pricingTable .pricingTable-header{
+    margin-bottom: 70px;
+    position: relative;
+    z-index: 1;
+}
+
+.pricingTable .pricingTable-header:before{
+    content: "";
+    width: 100%;
+    height: 150%;
+    /* background: #348AC7; */
+    /* background: #7474bf; */
+    background: linear-gradient(to right, #7474bf 0%, #348ac7 100%);
+
+    position: absolute;
+    top: -90%;
+    left: -20%;
+    z-index: -1;
+    transform: rotate(-42deg);
+}
+
+.pricingTable .pricingTable-header:after{
+    content: "";
+    width: 100%;
+    height: 190%;
+    background: linear-gradient(to left, #7474bf 0%, #348ac7 100%);
+    position: absolute;
+    top: -76%;
+    right: -16%;
+    z-index: -2;
+    transform: rotate(20deg);
+}
+
+.pricingTable .price-value{
+    display: inline-block;
+    width: 50%;
+    padding: 30px 0px;
+    float: left;
+    font-size: 25px;
+    color: #fff;
+    line-height: 20px;
+    position: relative;
+    top: 10px;
+    left: 20px;
+}
+
+.pricingTable .currency{
+    font-size: 20px;
+    position: relative;
+    top: -10px;
+    right: -3px;
+}
+
+.pricingTable .title{
+    display: inline-block;
+    width: 50%;
+    padding: 30px 0;
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    line-height: 20px;
+    text-transform: uppercase;
+    position: relative;
+    top: 10px;
+    right: 7px;
+}
+
+.pricingTable .pricing-content{
+    list-style: none;
+
+    padding: 0;
+    margin: 0 0 20px 5px;
+    text-align: left;
+    clear: both;
+}
+
+.pricingTable .pricing-content li{
+    font-size: 12px;
+    color: #828282;
+    line-height: 30px;
+}
+
+
+
+/* #flight_state {
+  font-size: 10px;
+  color: #697886;
+  text-align: center;
+
+} */
+
+
+
+
+ /* - - - - -- - - - - - - - - */
+
+
+/* div.row.container {
+  margin-left: 25px;
+} */
+
+ .MultiCarousel, .Carousel {
+  float: left;
+  overflow:hidden;
+  width: 600px;
+  position:relative;
+}
+
+
+
+.MultiCarousel .MultiCarousel-inner, .Carousel .Carousel-inner {
+  transition: 1s ease all; float: left;
+  width: 1800px !important;
+}
+
+
+
+.left-btn {
+  margin: auto;
+  text-align: end;
+  /* margin-right: -16px; */
+}
+
+.right-btn {
+  margin: auto;
+  text-align: start;
+  /* margin-left: -16px; */
+}
+
+
+.leftLst, .rightLst, .leftL, .rightL {
+  background-color: transparent;
+  border-color: transparent;
+
+}
+
+.leftLst:hover, .rightLst:hover, .leftL:hover, .rightL:hover {
+  background-color: transparent;
+  border-color: #2a5298;
+
+}
+
+
+.bi-arrow-bar-left, .bi-arrow-bar-right {
+  color: #1e3c72;
+  font-size: 30px;
+  height: 80px;
+}
+
+.MultiCarousel .MultiCarousel-inner {
+
+  transition: 0s;
+
+}
+
+.MultiCarousel .MultiCarousel-inner .item, .Carousel .Carousel-inner .element {
+
+  float: left;
+  text-align: center;;
+  background-image: linear-gradient(to right, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
+  color:#fff;
+  opacity: 60%;
+  height: 100px !important;
+  width: 100px !important;
+  border-radius: 10px;
+  padding-top: 20px;
+  margin-left: 20px;
+  font-size: 12px;
+
+
+}
+
+
+.MultiCarousel .MultiCarousel-inner .hov:hover, .Carousel .Carousel-inner .hov:hover {
+  background-image: linear-gradient(to left, #1e3c72 0%, #1e3c72 1%, #2a5298 100%) !important;
+  opacity: 100%;
+
+}
+
+.MultiCarousel .MultiCarousel-inner  .active, .Carousel .Carousel-inner  .active {
+  background-image: linear-gradient(to left, #1e3c72 0%, #1e3c72 1%, #2a5298 100%) !important;
+  opacity: 100%;
+
+}
+
+
+
+
+
+
+/* .MultiCarousel .leftLst, .MultiCarousel .rightLst { position:absolute; border-radius:50%;top:calc(50% - 20px);} */
+/* .leftLst, .rightLst { position:absolute; border-radius:50%;top:calc(50% - 20px);} */
+
+/* .MultiCarousel .leftLst { left:0;} */
+/* .leftLst { left:0;} */
+
+/* .MultiCarousel .rightLst { right:0; } */
+/* .rightLst { right:0; } */
+
+/* .MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over { pointer-events: none; background:#ccc; } */
+/* .leftLst.over, .rightLst.over { pointer-events: none; background:#ccc; } */
+
+
+
+/* .omar {
+  margin-left: 65px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+} */
+
+.omar .container {
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.omar .container .col-6 {
+  margin: auto;
+}
+
+
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+.selection-div{
+  position: fixed;
+  z-index: 99;
+  background-image: linear-gradient(135deg, rgba(220, 20, 60, .85), rgba(184,1,123,.85));
+  background-image: linear-gradient(to bottom, rgb(30,60,114, .85) 0%, rgb(30,60,114, 0.85) , rgb(42,82,152, 0.85));
+
+  height: 10%;
+  width: 100%;
+  bottom: 0;
+  box-shadow:  0 0 15px rgba(0, 0, 0, .2);
+  display: flex;
+  color: white;
+  justify-content: space-evenly;
+}
+
+.lower-1 {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.cont {
+  height: 40px;
+
+}
+/* - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+
+
+
+.bi-calendar-x-fill {
+  font-size: 100px;
+}
+
+.icon_flight {
+  text-align: center;
+}
+
+.no_flight {
+  text-align: center;
+  color: #4a5261;
+  font-size: 30px;
+}
+
+
+/* - - - - - - - - */
+
+@media only screen and (max-width: 600px) {
+
+.external_box {
+  width: 94%;
+}
+
+.MultiCarousel, .Carousel {
+  width: 240px;
+}
+
+/* .omar .container .col-6 {
+  width: 240px;
+} */
+
+/* .omar {
+  margin-left: 0px;
+} */
+
+/* .left-btn {
+  margin-left: 0px;
+}
+
+.right-btn {
+  margin-left: 65px;
+  margin-right: 0px;
+}
+
+div.row.container {
+  margin-left: 0px;
+} */
+
+.MultiCarousel .MultiCarousel-inner .item, .Carousel .Carousel-inner .element {
+
+
+  margin-left: 10px;
+  margin-right: 10px;
+
+
+}
+
+.white{
+  color: white;
+  font-size: xx-small;
+}
+
+.dep_time_box {
+  padding-left: 10px;
+}
+
+.arrive_time_box{
+  padding-right: 10px;
+}
+
+.selection-div {
+  font-size: 10px !important;
+}
+
+
+
+}

@@ -1,0 +1,657 @@
+{% extends 'flight/base.html' %}
+{% load static %}
+
+{% block head %}
+
+
+<meta name="viewport" content="width=width=device-width, initial-scale=1.0">
+
+
+
+
+<title>Search | Flight</title>
+<link rel="stylesheet" href="{% static 'css/search_style.css' %}">
+
+
+
+
+{% endblock %}
+
+{% block parentBody %}
+
+
+
+
+<div class="omar">
+  <div class="row container">
+
+    <div class="col-2 left-btn">
+      <button class="btn btn-primary leftLst"><i class="bi bi-arrow-bar-left"></i></button>
+    </div>
+
+
+    <div class="col-6">
+
+      <form action="{% url 'flight' %}" method="Get" id="sub">
+
+        <input type="hidden" name="Origin" value={{from_data.code}}>
+        <input type="hidden" name="Destination" value={{to_data.code}}>
+        <input type="hidden" class="Dep_updated" name="DepartDate" value="2022-11-25">
+        <input type="hidden" name="Adult" value={{adult_num}}>
+        <input type="hidden" name="Child" value={{child_num}}>
+        <input type="hidden" name="Infant" value={{infant_num}}>
+        <input type="hidden" name="ReturnDate" value={{ret_date_user}}>
+        <input type="hidden" name="TripType" value={{trip_type}}>
+        <input type="hidden" class="depo" value="{{depart_date_user|date:" M. d, Y"}}">
+
+
+
+        <div class="MultiCarousel" data-items="1,3,5,6" data-slide="6">
+
+
+          <div class="MultiCarousel-inner">
+            {% for i in flight_info_bar %}
+
+            {% if i == None %}
+            <button type="button" class="btn item" value="0">
+              <p>No Flight</p>
+            </button>
+
+
+            {% else %}
+            <button type="submit" class="btn item hov" value="{{i.depart_date|date:" M. d, Y"}}">
+              <p> {{i.depart_date}} <br>${{i.economy_fare}}</p>
+            </button>
+
+            {% endif %}
+
+            {% endfor %}
+
+          </div>
+
+
+        </div>
+      </form>
+
+    </div>
+
+    <div class="col-2 right-btn">
+      <button class="btn btn-primary rightLst"><i class="bi bi-arrow-bar-right"></i></button>
+    </div>
+
+  </div>
+</div>
+
+
+
+  <!-- - - - - - - - - - - - - - - - - - - - -  -->
+  <!-- - - - - - - - - - - - - - - - - - - - -  -->
+
+  <form action="{% url 'book' %}" method="Get">
+
+{% if flight_info %}
+
+
+
+    {% csrf_token %}
+
+    <div class="container external_box">
+
+      <section class="section1">
+        <div class="upper_banner">
+          <div class="container">
+      
+            <div class="banner_trip_places">
+      
+              <div class="from-div text-align-left">
+                <div class="white">{{from_data.city}}&nbsp({{from_data.code}})</div>
+              </div>
+      
+              <div class="icons white">
+                <div class="small-label"></div>
+                <i class="fa-sharp fa-solid fa-arrow-right"></i>
+              </div>
+      
+              <div class="to-div text-align-right">
+                <div class="white">{{to_data.city}}&nbsp({{to_data.code}})</div>
+              </div>
+            </div>
+      
+            <div class="banner_trip_time">
+      
+              <div class="depart-date-div ">
+                <div class="small-label">Depart</div>
+                <div class="white " >{{depart_date_user|date:"D, d M Y"}}</div>
+              </div>
+      
+              <!-- <div class="return-date-div">
+                <div class="small-label">Return</div>
+                <div class="white">
+                  {% if return_date_user %}
+                  {{return_date_user|date:"D, d M Y"}}
+                  {% else %}
+                  --
+                  {% endif %}
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+        {% for flight in flight_info %}
+          <div class="flight_box">
+
+            <div class="box_1">
+
+              <div class="box_header">
+                <div id="class_header_title">
+
+                  <div class="flight-icon">
+                    <i class="bi bi-airplane"> {{flight.airline}} - Direct</i>
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="availability_flight_info">
+
+                <div class="dep_time_box">
+                  <div id="dep_time"> {{flight.depart_time|time:"H:i"}}</div>
+                  <div id="dep_code"> {{flight.origin.code}}</div>
+                  <div id="dep_city"> {{flight.origin.city}}</div>
+
+                </div>
+
+                <div class="logo">
+                  <div id="logo_median"> <i class="bi bi-geo-alt-fill"></i></div>
+                  <div id="company_airline"> <img src="https://airhex.com/images/airline-logos/badr-airlines.png" width="35"
+                      height="35"> </div>
+
+                </div>
+
+                <div class="arrive_time_box">
+                  <div id="dep_time"> {{flight.arrival_time|time:"H:i"}}</div>
+                  <div id="dep_code"> {{flight.destination.code}}</div>
+                  <div id="dep_city"> {{flight.destination.city}}</div>
+
+                </div>
+              </div>
+
+
+            </div>
+            <div class="box_2">
+
+              <div class="box_header">
+                <div id="class_header">Economy</div>
+
+              </div>
+              <div id="flight_price">
+
+                {% if adult_num <= flight.economy_num_places %} 
+                <input type="radio" name="radio_flight" class="flight-radio"
+                  value="{{flight.id}}|{{flight.economy_fare}}" price="{{flight.economy_fare}}" required>
+                  {{flight.economy_fare}}
+                  {% else %}
+                  <div id="full">Full</div>
+                  {% endif %}
+              </div>
+
+            </div>
+
+
+            <div class="box_3">
+
+              <div class="box_header">
+                <div id="class_header">Business
+
+                </div>
+              </div>
+
+              <div id="flight_price">
+                {% if adult_num <= flight.business_num_places %} <input type="radio" name="radio_flight" class="flight-radio"
+                  value="{{flight.id}}|{{flight.business_fare}}" price="{{flight.business_fare}}" required>
+                  {{flight.business_fare}}
+                  {% else %}
+                  <div id="full">Full</div>
+                  {% endif %}
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="box_1_details">
+
+
+
+          </div>
+
+          <div class="box_2_details">
+
+            <div class="price_box">
+
+              <div class="pricingTable">
+                <div class="pricingTable-header">
+                  <span class="price-value">{{flight.economy_fare}}<span class="currency">$</span></span>
+                  <h3 class="title">Economy</h3>
+                </div>
+                <ul class="pricing-content">
+                  <li>1 piece of cabin bagga</li>
+                  <li>20 Kg Baggage</li>
+                  <li>1 piece of cabin baggage</li>
+                  <li>Refund/Reissue without Penalty</li>
+                  <li>In-Flight Entertainment</li>
+                </ul>
+                <!-- <a href="#" class="pricingTable-signup">Sign Up</a> -->
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="box_3_details">
+
+            <div class="price_box">
+
+              <div class="pricingTable">
+                <div class="pricingTable-header">
+                  <span class="price-value">{{flight.business_fare}}
+                    <span class="currency">$</span></span>
+                  <h3 class="title">Business</h3>
+                </div>
+                <ul class="pricing-content">
+                  <li>1 piece of cabin bagga</li>
+                  <li>20 Kg Baggage</li>
+                  <li>1 piece of cabin baggage</li>
+                  <li>Refund/Reissue without Penalty</li>
+                  <li>In-Flight Entertainment</li>
+                </ul>
+                <!-- <a href="#" class="pricingTable-signup">Sign Up</a> -->
+              </div>
+
+
+            </div>
+
+          </div>
+
+        {% endfor %}
+
+
+
+
+
+        <input type="hidden" name="FlightID_origin" value="{{flight_info.all.0.id}}" price="{{adult_num}}" id="flight_id_origin">
+        <input type="hidden" name="FlightID_destination" value="{{flight_info_return.all.0.id}}" id="flight_id_destination">
+        <input type="hidden" name="Adult_num" value="{{adult_num}}" id="adult_num">
+        <input type="hidden" name="Child_num" value="{{child_num}}" id="child_num">
+        <input type="hidden" name="Infant_num" value="{{infant_num}}" id="infant_num">
+
+
+
+
+      </section>
+    </div>
+
+
+
+    
+
+
+
+  <div class="selection-div ">
+
+    <div class="lower-1">
+      <div id="from_div">{{from_data.city}} <i class="fa-sharp fa-solid fa-arrow-right"></i> {{to_data.city}} <div id="origin_div" ></div></div>
+      <!-- <div id="from_div">21:45 <i class="bi bi-three-dots"></i> 03:10</div> -->
+    </div>
+
+    {% if flight_info_return %}
+    <div class="lower-1">
+      <div id="from_div">{{to_data.city}} <i class="fa-sharp fa-solid fa-arrow-right"></i> {{from_data.city}} <div id="destination_div" ></div></div>
+      <!-- <div id="from_div">21:45 <i class="bi bi-three-dots"></i> 03:10</div> -->
+    </div>
+    {% endif %}
+
+    <div class="lower-1">
+      <div id="from_div">Total Passengers</div>
+      <div id="from_div">{{total_passengers}}</div>
+    </div>
+
+    <div class="lower-1">
+      <div id="from_div">TOTAL FARE</div>
+      <div id="from_div">2000$</div>
+    </div>
+
+    <div class="lower-1">
+
+    <button class="btn btn-light cont" type="submit">Continue</button>
+  </div>
+
+
+  </div>
+
+
+{% else %}
+
+  <div class="container external_box">
+
+    <div class="icon_flight"><i class="bi bi-calendar-x-fill"></i></div>
+    <div class="no_flight">Sorry!</div>
+    <div class="no_flight">We don’t have any flights on {{depart_date_user|date:"d M Y"}} <br><br></div>
+
+  </div>
+
+
+{% endif %}
+
+
+
+
+
+
+{% if trip_type == "2" %}
+
+</form>
+
+
+<div class="omar">
+  <div class="row container">
+
+    <div class="col-2 left-btn">
+      <button class="btn btn-primary leftL"><i class="bi bi-arrow-bar-left"></i></button>
+    </div>
+
+
+    <div class="col-6">
+
+      <form action="{% url 'flight' %}" method="Get" id="sub">
+
+        <input type="hidden" name="Origin" value={{from_data.code}}>
+        <input type="hidden" name="Destination" value={{to_data.code}}>
+        <input type="hidden" class="Ret_updated" name="ReturnDate" value="2022-11-25">
+        <input type="hidden" name="Adult" value={{adult_num}}>
+        <input type="hidden" name="Child" value={{child_num}}>
+        <input type="hidden" name="Infant" value={{infant_num}}>
+        <input type="hidden" name="TripType" value={{trip_type}}>
+        <input type="hidden" name="DepartDate" value="{{dep_date_user}}">
+
+        <input type="hidden" class="Reto" value="{{return_date_user|date:" M. d, Y"}}">
+
+
+        
+
+
+
+        <div class="Carousel" data-items="1,3,5,6" data-slide="6">
+
+
+          <div class="Carousel-inner">
+            {% for i in flight_info_return_bar %}
+
+            {% if i == None %}
+            <button type="button" class="btn element" value="0">
+              <p>No Flight</p>
+            </button>
+
+
+            {% else %}
+            <button type="submit" class="btn element hov" value="{{i.depart_date|date:" M. d, Y"}}">
+              <p> {{i.depart_date}} <br>${{i.economy_fare}}</p>
+            </button>
+
+            {% endif %}
+
+            {% endfor %}
+
+          </div>
+
+
+        </div>
+      </form>
+
+    </div>
+
+    <div class="col-2 right-btn">
+      <button class="btn btn-primary rightL"><i class="bi bi-arrow-bar-right"></i></button>
+    </div>
+
+  </div>
+</div>
+
+
+
+<form action="{% url 'book' %}" method="Get">
+
+  {% if flight_info %}
+
+      {% if flight_info_return %}
+
+          {% for flight_return in flight_info_return %}
+          <div class="container external_box">
+
+            <section class="section1">
+              <div class="upper_banner">
+                <div class="container">
+            
+                  <div class="banner_trip_places">
+            
+                    <div class="from-div text-align-left">
+                      <div class="white">{{from_data.city}}&nbsp({{from_data.code}})</div>
+                    </div>
+            
+                    <div class="icons white">
+                      <div class="small-label"></div>
+                      <i class="fa-sharp fa-solid fa-arrow-left"></i>
+                    </div>
+            
+                    <div class="to-div text-align-right">
+                      <div class="white">{{to_data.city}}&nbsp({{to_data.code}})</div>
+                    </div>
+                  </div>
+            
+                  <div class="banner_trip_time">
+            
+                    <!-- <div class="depart-date-div ">
+                      <div class="small-label">Depart</div>
+                      <div class="white">{{depart_date_user|date:"D, d M Y"}}</div>
+                    </div> -->
+            
+                    <div class="return-date-div">
+                      <div class="small-label">Return</div>
+                      <div class="white">
+                        
+                        {{return_date_user|date:"D, d M Y"}}
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+                <div class="flight_box">
+
+                  <div class="box_1">
+
+                    <div class="box_header">
+                      <div id="class_header_title">
+
+                        <div class="flight-icon">
+                          <i class="bi bi-airplane"> {{flight_return.airline}} - Direct</i>
+
+                        </div>
+
+
+                      </div>
+
+                    </div>
+                    <div class="availability_flight_info">
+
+                      <div class="dep_time_box">
+                        <div id="dep_time"> {{flight_return.depart_time|time:"H:i"}}</div>
+                        <div id="dep_code"> {{flight_return.origin.code}}</div>
+                        <div id="dep_city"> {{flight_return.origin.city}}</div>
+
+                      </div>
+
+                      <div class="logo">
+                        <div id="logo_median"> <i class="bi bi-geo-alt-fill"></i></div>
+                        <div id="company_airline"> <img src="https://airhex.com/images/airline-logos/badr-airlines.png" width="35"
+                            height="35"> </div>
+
+                      </div>
+
+                      <div class="arrive_time_box">
+                        <div id="dep_time"> {{flight_return.arrival_time|time:"H:i"}}</div>
+                        <div id="dep_code"> {{flight_return.destination.code}}</div>
+                        <div id="dep_city"> {{flight_return.destination.city}}</div>
+
+                      </div>
+                    </div>
+
+
+                  </div>
+
+                  <div class="box_2">
+
+                    <div class="box_header">
+                      <div id="class_header">Economy</div>
+
+                    </div>
+                    <div id="flight_price">
+
+                      {% if adult_num <= flight_return.economy_num_places %} <input type="radio" name="radio_flight_round"
+                        class="flight-radio-round" value="{{flight_return.id}}|{{flight_return.economy_fare}}" price="{{flight_return.economy_fare}}" required>
+                        {{flight_return.economy_fare}}
+                        {% else %}
+                        <div id="full">Full</div>
+                        {% endif %}
+                    </div>
+
+
+                  </div>
+
+                  <div class="box_3">
+
+                    <div class="box_header">
+                      <div id="class_header">Business
+
+                      </div>
+                    </div>
+
+                    <div id="flight_price">
+                      <!-- <input type="radio" name="radio_flight_round" class="flight-radio" value="{{flight_return.id}}"> -->
+                      {% if adult_num <= flight_return.business_num_places %} <input type="radio" name="radio_flight_round" class="flight-radio-round"
+                            value="{{flight_return.id}}|{{flight_return.business_fare}}" price="{{flight_return.business_fare}}" required>
+                            {{flight_return.business_fare}}
+                            {% else %}
+                            <div id="full">Full</div>
+                            {% endif %}
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+
+              <div class="box_1_details">
+
+
+
+              </div>
+
+              <div class="box_2_details">
+
+                <div class="price_box">
+
+                  <div class="pricingTable">
+                    <div class="pricingTable-header">
+                      <span class="price-value">{{flight_return.economy_fare}}<span class="currency">$</span></span>
+                      <h3 class="title">Economy</h3>
+                    </div>
+                    <ul class="pricing-content">
+                      <li>1 piece of cabin bagga</li>
+                      <li>20 Kg Baggage</li>
+                      <li>1 piece of cabin baggage</li>
+                      <li>Refund/Reissue without Penalty</li>
+                      <li>In-Flight Entertainment</li>
+                    </ul>
+                    <!-- <a href="#" class="pricingTable-signup">Sign Up</a> -->
+                  </div>
+
+
+                </div>
+              </div>
+
+              <div class="box_3_details">
+
+                <div class="price_box">
+
+                  <div class="pricingTable">
+                    <div class="pricingTable-header">
+                      <span class="price-value">450<span class="currency">$</span></span>
+                      <h3 class="title">Business</h3>
+                    </div>
+                    <ul class="pricing-content">
+                      <li>1 piece of cabin bagga</li>
+                      <li>20 Kg Baggage</li>
+                      <li>1 piece of cabin baggage</li>
+                      <li>Refund/Reissue without Penalty</li>
+                      <li>In-Flight Entertainment</li>
+                    </ul>
+                    <!-- <a href="#" class="pricingTable-signup">Sign Up</a> -->
+                  </div>
+
+
+                </div>
+
+              </div>
+
+
+
+
+            </section>
+
+          </div>
+
+          {% endfor %}
+
+        {% else %}
+          
+          <div class="container external_box">
+          
+            <div class="icon_flight"><i class="bi bi-calendar-x-fill"></i></div>
+            <div class="no_flight">Sorry!</div>
+            <div class="no_flight">We don’t have any flights on {{return_date_user|date:"d M Y"}} <br><br></div>
+          
+          </div>
+
+       {% endif %}
+
+      
+
+  {% else %}
+          
+          <div class="container external_box">
+          
+            <div class="icon_flight"><i class="bi bi-calendar-x-fill"></i></div>
+            <div class="no_flight">Sorry!</div>
+            <div class="no_flight">We don’t have any flights on {{return_date_user|date:"d M Y"}} <br><br></div>
+          
+          </div>
+  {% endif %}
+{% endif %}
+
+
+</form>
+
+
+
+
+
+
+<script src="{% static 'js/search_java.js' %}" type="text/javascript" charset="utf-8"></script>
+
+
+
+{% endblock%}

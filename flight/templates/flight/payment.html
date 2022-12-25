@@ -1,0 +1,38 @@
+
+{% extends 'flight/base.html' %}
+
+{% load static %}
+
+{% block head %}
+
+
+<title>Payment | Flight</title>
+<link rel="stylesheet" href="{% static 'css/payment_style.css' %}">
+
+
+
+{% endblock %}
+
+{% block parentBody %}
+
+<div class="container">
+
+<div class="tab-pane fade active in" id="desc">
+  <div class="row">
+      <div id="iyzipay-checkout-form" class="responsive"></div>
+      <!-- <div id="iyzipay-checkout-form" class="responsive"></div> -->
+  </div>
+
+</div>
+</div>
+
+{% endblock%}
+
+
+
+
+
+
+
+
+
