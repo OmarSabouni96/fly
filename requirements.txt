@@ -3,7 +3,6 @@ aiosignal==1.2.0
 amadeus==7.0.0
 arabic-reshaper==2.1.4
 argon2==0.1.10
-asgiref @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_edg6nzjrx0/croots/recipe/asgiref_1661287549316/work
 asn1crypto==1.5.1
 astroid==2.12.12
 async-generator==1.10
@@ -12,7 +11,6 @@ attrs==22.1.0
 autopep8==1.7.0
 bcrypt==4.0.1
 bleach==5.0.1
-certifi @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_0ek9yztvu3/croot/certifi_1665076692562/work/certifi
 cffi==1.15.1
 chardet==5.0.0
 charset-normalizer==2.1.1
