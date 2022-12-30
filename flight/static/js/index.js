@@ -83,7 +83,7 @@ function flight_from(event, focus) {
               let div = document.createElement('div');
               div.setAttribute('class', 'each_places_from_list');
               div.classList.add('places__list');
-              div.setAttribute('onclick', "selectplace(this)");
+              div.setAttribute('onmousedown', "selectplace(this)");
               div.setAttribute('data-value', element.code);
               div.innerText = `${element.city} (${element.country})`;
               list.append(div);
@@ -109,7 +109,7 @@ function flight_to(event, focus) {
               let div = document.createElement('div');
               div.setAttribute('class', 'each_places_to_list');
               div.classList.add('places__list');
-              div.setAttribute('onclick', "selectplace(this)");
+              div.setAttribute('onmousedown', "selectplace(this)");
               div.setAttribute('data-value', element.code);
               div.innerText = `${element.city} (${element.country})`;
               list.append(div);
@@ -199,7 +199,7 @@ function flight_search() {
         }
 
         if ( (document.querySelector("#input_date").value) > (document.querySelector("#return_date").value)  ){
-            alert("يا جحش دخل التواريخ مظبوط");
+            alert("Enter the dates correctly");
             return false;
 
         }

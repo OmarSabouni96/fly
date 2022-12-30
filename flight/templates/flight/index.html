@@ -23,6 +23,7 @@
 
 {% block parentBody %}
 
+<div class="bob">
 <div class="background">
   <div class="container">
   </div>
@@ -60,19 +61,19 @@
                 value="{{origin | upper}}" required>
   
               <div id="places_from" class="places_box ">
-                <div class="each_places_from_list places__list" data-value="KRT" onclick="selectplace(this)">Khartoum
+                <div class="each_places_from_list places__list" data-value="KRT" onmousedown="selectplace(this)">Khartoum
                   (KRT)</div>
-                <div class="each_places_from_list places__list" data-value="DOH" onclick="selectplace(this)">Doha
+                <div class="each_places_from_list places__list" data-value="DOH" onmousedown="selectplace(this)">Doha
                   (DOH)</div>
-                <div class="each_places_from_list places__list" data-value="DXB" onclick="selectplace(this)">Dubai
+                <div class="each_places_from_list places__list" data-value="DXB" onmousedown="selectplace(this)">Dubai
                   (DXB)</div>
-                <div class="each_places_from_list places__list" data-value="AUH" onclick="selectplace(this)">Abu Dhabi
+                <div class="each_places_from_list places__list" data-value="AUH" onmousedown="selectplace(this)">Abu Dhabi
                   (AUH)</div>
-                <div class="each_places_from_list places__list" data-value="JED" onclick="selectplace(this)">Jeddah
+                <div class="each_places_from_list places__list" data-value="JED" onmousedown="selectplace(this)">Jeddah
                   (JED)</div>
-                <div class="each_places_from_list places__list" data-value="RUH" onclick="selectplace(this)">Riyadh
+                <div class="each_places_from_list places__list" data-value="RUH" onmousedown="selectplace(this)">Riyadh
                   (RUH)</div>
-                <div class="each_places_from_list places__list" data-value="CAI" onclick="selectplace(this)">Cairo
+                <div class="each_places_from_list places__list" data-value="CAI" onmousedown="selectplace(this)">Cairo
                   (CAI)</div>
               </div>
   
@@ -89,19 +90,19 @@
   
               <!-- <div class="label" id="from"></div> -->
               <div id="places_to" class="places_box">
-                <div class="each_places_to_list places__list" data-value="KRT" onclick="selectplace(this)">Khartoum (KRT)
+                <div class="each_places_to_list places__list" data-value="KRT" onmousedown="javascript:selectplace(this)">Khartoum (KRT)
                 </div>
-                <div class="each_places_to_list places__list" data-value="DOH" onclick="selectplace(this)">Doha (DOH)
+                <div class="each_places_to_list places__list" data-value="DOH" onmousedown="javascript:selectplace(this)">Doha (DOH)
                 </div>
-                <div class="each_places_to_list places__list" data-value="DXB" onclick="selectplace(this)">Dubai (DXB)
+                <div class="each_places_to_list places__list" data-value="DXB" onmousedown="selectplace(this)">Dubai (DXB)
                 </div>
-                <div class="each_places_to_list places__list" data-value="AUH" onclick="selectplace(this)">Abu Dhabi (AUH)
+                <div class="each_places_to_list places__list" data-value="AUH" onmousedown="selectplace(this)">Abu Dhabi (AUH)
                 </div>
-                <div class="each_places_to_list places__list" data-value="JED" onclick="selectplace(this)">Jeddah (JED)
+                <div class="each_places_to_list places__list" data-value="JED" onmousedown="selectplace(this)">Jeddah (JED)
                 </div>
-                <div class="each_places_to_list places__list" data-value="RUH" onclick="selectplace(this)">Riyadh (RUH)
+                <div class="each_places_to_list places__list" data-value="RUH" onmousedown="selectplace(this)">Riyadh (RUH)
                 </div>
-                <div class="each_places_to_list places__list" data-value="CAI" onclick="selectplace(this)">Cairo (CAI)
+                <div class="each_places_to_list places__list" data-value="CAI" onmousedown="selectplace(this)">Cairo (CAI)
                 </div>
               </div>
   
@@ -147,8 +148,8 @@
 
             <select class="form-select" aria-label="Default select example" id="Adult_id" name="Adult" >
               <option hidden value="1">Adult <span>(12+)</span></option>
-              <option value="1">1</option>
-              <option value="2">2</option>
+              <option value="1">1 Adult</option>
+              <option value="2">2 Adults</option>
               <option value="3">3</option>
               <option value="4">4</option>
               <option value="5">5</option>
@@ -207,6 +208,7 @@
     </div>
   </div>
 
+</div>
 
   <section class="section second-section">
     <div class="container">

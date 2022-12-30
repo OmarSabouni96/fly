@@ -291,6 +291,10 @@ ul{
 	background-color: #ffffff;
 }
 
+.footer-col ul {
+    padding-left: 0px !important;
+}
+
 /*responsive*/
 @media(max-width: 767px){
   .footer-col{
